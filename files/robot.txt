@@ -1,0 +1,16 @@
+*** Settings ***
+Library    AppiumLibrary   run_on_failure=Close Application
+ 
+*** Variables ***
+${REMOTE_URL}     http://localhost:4723/wd/hub
+ 
+*** Keywords ***
+TestStart
+    Open Application    ${REMOTE_URL}  platformName=Android    deviceName=android   app=/home/work/Instapp/platforms/android/build/outputs/apk/android-debug.apk 
+ 
+*** Test Cases ***
+Snapshot
+    TestStart
+    Wait Until Page Contains     Login       timeout=10
+    Page Should Contain Text     Login
+    Close Application
